@@ -1,6 +1,6 @@
 class Stopwatch extends React.Component {
-    constructor() {
-    	super();
+    constructor(props) {
+    	super(props);
     	this.state = {
         	running: false,
         	watch: 0,
@@ -76,9 +76,9 @@ class Stopwatch extends React.Component {
 	    return (
 	        <div>
 		        {this.format()}
-			    <button onClick={()=> this.start() }>  Start </button>
-			    <button onClick={()=> this.stop() }>   Stop  </button>
-		        <button onClick={()=> this.reset() }>  Reset </button>
+			    <button onClick={()=> this.start()}> Start </button>
+			    <button onClick={()=> this.stop()}>  Stop  </button>
+		        <button onClick={()=> this.reset()}> Reset </button>
       		</div>
 			
 	    );
@@ -99,8 +99,8 @@ function pad0(value) {
 
 
 ReactDOM.render(
-	<Stopwatch/>,
-	document.getElementById('app');
+	(<Stopwatch/>, app), 
+	document.getElementById('app')
 );
 
 
