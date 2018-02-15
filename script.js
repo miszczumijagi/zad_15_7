@@ -1,9 +1,9 @@
 class Stopwatch extends React.Component {
-    constructor(display) {
-    	super(display);
+    constructor() {
+    	super();
     	this.state = {
         	running: false,
-        	display: display,
+        	watch: 0,
             minutes: 0,
             seconds: 0,
             miliseconds: 0
@@ -16,9 +16,7 @@ class Stopwatch extends React.Component {
             minutes: 0,
             seconds: 0,
             miliseconds: 0
-        })
-        this.running = false,
-	    clearInterval(this.watch)
+        });
 	    
     }
 
@@ -27,17 +25,17 @@ class Stopwatch extends React.Component {
 	}
 
 	start() {
-	    if (!this.running) {
+	    if (!this.state.running) {
 	    	this.setState({
 	        	running: true,
 	        	watch: setInterval(() => this.step(), 10)
 	        		
-	    	})
+	    	});
 	    }	
 	}
 
 	step() {
-	    if (!this.running) return;
+	    if (!this.state.running) return;
 	    this.calculate();
 	    
 	}
@@ -66,9 +64,9 @@ class Stopwatch extends React.Component {
 	}
 	
 	stop() {
+		clearInterval(this.state.watch);
 	    this.setState({running:false});
-	    clearInterval(this.watch);
-
+	    
 	}
 
 	
@@ -76,23 +74,18 @@ class Stopwatch extends React.Component {
 	
 	render(){
 	    return (
-	      
 	        <div>
-		        <div className={'stopwatch'}>{this.format()}</div>
-		        <button className='startButton' onClick={ ()=> this.start() }>  Start </button>
-		        <button className='stopButton' onClick={ ()=> this.stop() }>   Stop  </button>
-		        <button className='resetButton' onClick={ ()=> this.reset() }>  Reset </button>
+		        {this.format()}
+			    <button onClick={()=> this.start() }>  Start </button>
+			    <button onClick={()=> this.stop() }>   Stop  </button>
+		        <button onClick={()=> this.reset() }>  Reset </button>
       		</div>
 			
-	    )
+	    );
   	}
 
 }
 
-
-const stopwatch = new Stopwatch (
-  document.querySelector('.stopwatch')
-);
 
 
 function pad0(value) {
@@ -104,5 +97,10 @@ function pad0(value) {
 }
 
 
-const app = document.getElementById('app');
-ReactDOM.render(<Stopwatch/>, app);
+
+ReactDOM.render(
+	<Stopwatch/>,
+	document.getElementById('app');
+);
+
+
