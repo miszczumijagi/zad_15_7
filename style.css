@@ -8,18 +8,8 @@ body {
     color: white;
     }
 
-.app {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: black;
-    max-width: 50vw;
-    max-height: 30vh;
-    align-items: center;
-    font-size: 30px;
-}
 
-a {
+button {
     text-decoration: none;
     width: 100px;
     margin: 30px 10px;
@@ -28,35 +18,16 @@ a {
     padding: 15px;
     font-size: 20px;
     color: #0a55ce;
+    border-radius: 10px;
 }
 
-#clear {
-	display: flex;
-	justify-content: center;
-    background-color: black;
-    flex-direction: column;
-    margin: 0;
-    width: auto;
-    margin-left: 20px;
-    width: 20%;
-    padding: 20px;
+button:hover {
+	background-color: #edf1f7;
 }
 
-.results {
-	list-style: none;
-    display: flex;
-    align-items: center;
-   	flex-direction: column;
-   	flex-wrap: wrap;
-    max-height: 300px;
-    height: 300px;
-    font-size: 20px;
-    width: 80%;
-    margin-right: 20px;
-    margin-left: 20px;
-    padding-top: 20px;
-    margin-bottom: 0;
+p {
+    font-size: 36px;
+    text-align: center;
 }
-
 
 

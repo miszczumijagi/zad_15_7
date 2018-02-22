@@ -28,20 +28,6 @@ var Stopwatch = function (_React$Component) {
 	}
 
 	_createClass(Stopwatch, [{
-		key: 'reset',
-		value: function reset() {
-			this.setState({
-				minutes: 0,
-				seconds: 0,
-				miliseconds: 0
-			});
-		}
-	}, {
-		key: 'format',
-		value: function format(times) {
-			return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(Math.floor(times.miliseconds));
-		}
-	}, {
 		key: 'start',
 		value: function start() {
 			var _this2 = this;
@@ -93,6 +79,23 @@ var Stopwatch = function (_React$Component) {
 			this.setState({ running: false });
 		}
 	}, {
+		key: 'reset',
+		value: function reset() {
+			this.setState({
+				minutes: 0,
+				seconds: 0,
+				miliseconds: 0
+			});
+		}
+	}, {
+		key: 'split',
+		value: function split() {
+			if (this.state.running) {
+				addSplitTimeToList(this.state.format(this.state.times), resultList);
+				clearInterval(this.state.displayTime);
+			} else return;
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this3 = this;
@@ -100,29 +103,39 @@ var Stopwatch = function (_React$Component) {
 			return React.createElement(
 				'div',
 				null,
-				this.format(),
+				React.createElement(
+					'p',
+					null,
+					this.format(),
+					' '
+				),
 				React.createElement(
 					'button',
 					{ onClick: function onClick() {
 							return _this3.start();
 						} },
-					' Start '
+					'Start'
 				),
 				React.createElement(
 					'button',
 					{ onClick: function onClick() {
 							return _this3.stop();
 						} },
-					'  Stop  '
+					'Stop '
 				),
 				React.createElement(
 					'button',
 					{ onClick: function onClick() {
 							return _this3.reset();
 						} },
-					' Reset '
+					'Reset'
 				)
 			);
+		}
+	}, {
+		key: 'format',
+		value: function format(times) {
+			return pad0(this.state.minutes) + ':' + pad0(this.state.seconds) + ':' + pad0(Math.floor(this.state.miliseconds));
 		}
 	}]);
 
@@ -137,4 +150,5 @@ function pad0(value) {
 	return result;
 }
 
-ReactDOM.render((React.createElement(Stopwatch, null), app), document.getElementById('app'));
+var app = document.getElementById('app');
+ReactDOM.render(React.createElement(Stopwatch, null), app);
